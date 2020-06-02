@@ -10,6 +10,15 @@
 
 
 def main(arr: list) -> list:
+    ##
+    # Solution : Construct 2 arrays, starting from opposite ends of the input arr
+    # for which each successive element is a product of the previous time the current in the arr
+    # For example, if the input array is [1, 2, 3], then ls1 = [1, 1*a[0], 1*a[0]*a[1]], ls2 = [1, 1*a[2], 1*a[2]*a[1]]
+    # Now, between ls1 and ls2, you have every combination of multiplcation between the elements of the array. If you want
+    # to find the value at arr[1], you multiply every value except arr[1], so you take ls1[1] * ls2[1]. If you reverse ls2 to
+    # [1*a[2]*a[3], 1*a[2], 1], then you can do an element-wise multitplicaiton with ls1 such that
+    # output = [1 * 1 * a[2] * a[3], 1*a[0]*1*a[2], 1*a[0]*a[1]*1]. Thus, this produces the desired output,
+    # without division, in O(n) time and O(n) space.
     ls1 = [1 for i in range(len(arr))]
     ls2 = [1 for i in range(len(arr))]
     print(arr)
